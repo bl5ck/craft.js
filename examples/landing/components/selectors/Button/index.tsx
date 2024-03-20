@@ -29,7 +29,7 @@ const StyledButton = styled.button<ButtonProps>`
   border: 2px solid transparent;
   border-color: ${(props) =>
     props.buttonStyle === 'outline'
-      ? `rgba(${Object.values(props.background)})`
+      ? `rgba(${Object.values(props.borderColor)})`
       : 'transparent'};
   margin: ${({ margin }) =>
     `${margin[0]}px ${margin[1]}px ${margin[2]}px ${margin[3]}px`};

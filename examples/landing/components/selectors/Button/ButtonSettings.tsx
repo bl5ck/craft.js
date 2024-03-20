@@ -41,6 +41,12 @@ export const ButtonSettings = () => {
           label="Background"
         />
         <ToolbarItem full={true} propKey="color" type="color" label="Text" />
+        <ToolbarItem
+          full={true}
+          propKey="borderColor"
+          type="color"
+          label="Border Color"
+        />
       </ToolbarSection>
       <ToolbarSection
         title="Margin"
