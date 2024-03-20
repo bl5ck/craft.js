@@ -1,6 +1,7 @@
 import { useEditor } from '@craftjs/core';
 import cx from 'classnames';
-import React, { useEffect } from 'react';
+import lz from 'lzutf8';
+import React, { useEffect, useState } from 'react';
 
 import { Header } from './Header';
 import { Sidebar } from './Sidebar';
@@ -9,13 +10,20 @@ import { Toolbox } from './Toolbox';
 export const Viewport: React.FC<{ children?: React.ReactNode }> = ({
   children,
 }) => {
-  const {
-    enabled,
-    connectors,
-    actions: { setOptions },
-  } = useEditor((state) => ({
+  const { enabled, connectors, actions } = useEditor((state) => ({
     enabled: state.options.enabled,
   }));
+  const [state, setState] = useState<string>('');
+  const { setOptions } = actions;
+  useEffect(() => {
+    if (!state?.trim()) {
+      return;
+    }
+    const json = lz.decompress(lz.decodeBase64(state));
+    actions.deserialize(json);
+  }, [state, actions]);
+
+  console.log(setState);
 
   useEffect(() => {
     if (!window) {

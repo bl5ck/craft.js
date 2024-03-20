@@ -1,8 +1,9 @@
 import { useEditor } from '@craftjs/core';
 import { Tooltip } from '@material-ui/core';
 import cx from 'classnames';
-import React from 'react';
 import styled from 'styled-components';
+
+import { Topbar } from './Topbar';
 
 import Checkmark from '../../../public/icons/check.svg';
 import Customize from '../../../public/icons/customize.svg';
@@ -75,6 +76,7 @@ export const Header = () => {
             </Tooltip>
           </div>
         )}
+        <Topbar />
         <div className="flex">
           <Btn
             className={cx([

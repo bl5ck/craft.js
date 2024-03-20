@@ -68,8 +68,6 @@
   },
   "workspaces": {
     "packages": [
-      "packages/*",
-      "site",
       "examples/*"
     ]
   },

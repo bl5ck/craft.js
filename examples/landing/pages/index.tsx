@@ -1,7 +1,6 @@
 import { Editor, Frame, Element } from '@craftjs/core';
 import { createMuiTheme } from '@material-ui/core';
 import { ThemeProvider } from '@material-ui/core/styles';
-import { NextSeo } from 'next-seo';
 import React from 'react';
 
 import { Viewport, RenderNode } from '../components/editor';
@@ -10,6 +9,7 @@ import { Button } from '../components/selectors/Button';
 import { Custom1, OnlyButtons } from '../components/selectors/Custom1';
 import { Custom2, Custom2VideoDrop } from '../components/selectors/Custom2';
 import { Custom3, Custom3BtnDrop } from '../components/selectors/Custom3';
+import { Image } from '../components/selectors/Image';
 import { Video } from '../components/selectors/Video';
 
 const theme = createMuiTheme({
@@ -28,15 +28,6 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <div className="h-full h-screen">
-        <NextSeo
-          title="Craft.js"
-          description="A React framework for building drag-n-drop page editors."
-          canonical="https://craft.js.org/"
-          twitter={{
-            site: 'craft.js.org',
-            cardType: 'summary_large_image',
-          }}
-        />
         <Editor
           resolver={{
             Container,
@@ -48,6 +39,7 @@ function App() {
             Custom3BtnDrop,
             OnlyButtons,
             Button,
+            Image,
             Video,
           }}
           enabled={false}

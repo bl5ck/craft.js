@@ -1,14 +1,16 @@
 import { Element, useEditor } from '@craftjs/core';
 import { Tooltip } from '@material-ui/core';
-import React from 'react';
+import ImageIcon from '@material-ui/icons/Image';
 import styled from 'styled-components';
 
 import ButtonSvg from '../../../public/icons/toolbox/button.svg';
 import SquareSvg from '../../../public/icons/toolbox/rectangle.svg';
 import TypeSvg from '../../../public/icons/toolbox/text.svg';
 import YoutubeSvg from '../../../public/icons/toolbox/video-line.svg';
+import ToolboxItem from '../../ToolboxItem';
 import { Button } from '../../selectors/Button';
 import { Container } from '../../selectors/Container';
+import { Image } from '../../selectors/Image';
 import { Text } from '../../selectors/Text';
 import { Video } from '../../selectors/Video';
 
@@ -16,19 +18,6 @@ const ToolboxDiv = styled.div<{ enabled: boolean }>`
   transition: 0.4s cubic-bezier(0.19, 1, 0.22, 1);
   ${(props) => (!props.enabled ? `width: 0;` : '')}
   ${(props) => (!props.enabled ? `opacity: 0;` : '')}
-`;
-
-const Item = styled.a<{ move?: boolean }>`
-  svg {
-    width: 22px;
-    height: 22px;
-    fill: #707070;
-  }
-  ${(props) =>
-    props.move &&
-    `
-    cursor: move;
-  `}
 `;
 
 export const Toolbox = () => {
@@ -61,9 +50,9 @@ export const Toolbox = () => {
           }
         >
           <Tooltip title="Container" placement="right">
-            <Item className="m-2 pb-2 cursor-pointer block" move>
+            <ToolboxItem className="m-2 pb-2 cursor-pointer block" move>
               <SquareSvg />
-            </Item>
+            </ToolboxItem>
           </Tooltip>
         </div>
         <div
@@ -72,23 +61,30 @@ export const Toolbox = () => {
           }
         >
           <Tooltip title="Text" placement="right">
-            <Item className="m-2 pb-2 cursor-pointer block" move>
+            <ToolboxItem className="m-2 pb-2 cursor-pointer block" move>
               <TypeSvg />
-            </Item>
+            </ToolboxItem>
           </Tooltip>
         </div>
         <div ref={(ref) => create(ref, <Button />)}>
           <Tooltip title="Button" placement="right">
-            <Item className="m-2 pb-2 cursor-pointer block" move>
+            <ToolboxItem className="m-2 pb-2 cursor-pointer block" move>
               <ButtonSvg />
-            </Item>
+            </ToolboxItem>
+          </Tooltip>
+        </div>
+        <div ref={(ref) => create(ref, <Image />)}>
+          <Tooltip title="Image" placement="right">
+            <ToolboxItem className="m-2 pb-2 cursor-pointer block" move>
+              <ImageIcon />
+            </ToolboxItem>
           </Tooltip>
         </div>
         <div ref={(ref) => create(ref, <Video />)}>
           <Tooltip title="Video" placement="right">
-            <Item className="m-2 pb-2 cursor-pointer block" move>
+            <ToolboxItem className="m-2 pb-2 cursor-pointer block" move>
               <YoutubeSvg />
-            </Item>
+            </ToolboxItem>
           </Tooltip>
         </div>
       </div>
