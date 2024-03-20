@@ -12,8 +12,13 @@ type ButtonProps = {
   color?: Record<'r' | 'g' | 'b' | 'a', number>;
   buttonStyle?: string;
   margin?: any[];
+  padding?: any[];
   text?: string;
   textComponent?: any;
+  radius?: number;
+  shadow?: number;
+  borderWidth?: any[];
+  borderColor?: Record<'r' | 'g' | 'b' | 'a', number>;
 };
 
 const StyledButton = styled.button<ButtonProps>`
@@ -28,6 +33,13 @@ const StyledButton = styled.button<ButtonProps>`
       : 'transparent'};
   margin: ${({ margin }) =>
     `${margin[0]}px ${margin[1]}px ${margin[2]}px ${margin[3]}px`};
+  padding: ${({ padding }) =>
+    `${padding[0]}px ${padding[1]}px ${padding[2]}px ${padding[3]}px`};
+  border-radius: ${({ radius }) => `${radius}px`};
+  box-shadow: ${({ shadow }) => `0 0 ${shadow}px 0 rgba(0, 0, 0, 0.1)`};
+  border-width: ${({ borderWidth }) =>
+    `${borderWidth[0]}px ${borderWidth[1]}px ${borderWidth[2]}px ${borderWidth[3]}px`};
+  border-color: ${({ borderColor }) => `rgba(${Object.values(borderColor)})`};
 `;
 
 export const Button: UserComponent<ButtonProps> = (props: any) => {
@@ -62,6 +74,11 @@ Button.craft = {
     buttonStyle: 'full',
     text: 'Button',
     margin: ['5', '0', '5', '0'],
+    padding: ['10', '10', '10', '10'],
+    radius: 0,
+    shadow: 0,
+    borderWidth: ['0', '0', '0', '0'],
+    borderColor: { r: 0, g: 0, b: 0, a: 0 },
     textComponent: {
       ...Text.craft.props,
       textAlign: 'center',

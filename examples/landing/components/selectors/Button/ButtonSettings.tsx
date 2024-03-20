@@ -8,14 +8,16 @@ export const ButtonSettings = () => {
     <React.Fragment>
       <ToolbarSection
         title="Colors"
-        props={['background', 'color']}
-        summary={({ background, color }: any) => {
+        props={['background', 'color', 'borderColor']}
+        summary={({ background, color, borderColor }: any) => {
           return (
             <div className="flex flex-row-reverse">
               <div
                 style={{
                   background:
                     background && `rgba(${Object.values(background)})`,
+                  borderColor:
+                    borderColor && `rgba(${Object.values(borderColor)})`,
                 }}
                 className="shadow-md flex-end w-6 h-6 text-center flex items-center rounded-full bg-black"
               >
@@ -54,11 +56,71 @@ export const ButtonSettings = () => {
         <ToolbarItem propKey="margin" index={2} type="slider" label="Bottom" />
         <ToolbarItem propKey="margin" index={3} type="slider" label="Left" />
       </ToolbarSection>
+      <ToolbarSection
+        title="Padding"
+        props={['padding']}
+        summary={({ padding }: any) => {
+          return `${padding[0] || 0}px ${padding[1] || 0}px ${
+            padding[2] || 0
+          }px ${padding[3] || 0}px`;
+        }}
+      >
+        <ToolbarItem propKey="padding" index={0} type="slider" label="Top" />
+        <ToolbarItem propKey="padding" index={1} type="slider" label="Right" />
+        <ToolbarItem propKey="padding" index={2} type="slider" label="Bottom" />
+        <ToolbarItem propKey="padding" index={3} type="slider" label="Left" />
+      </ToolbarSection>
+      <ToolbarSection
+        title="Border"
+        props={['borderWidth']}
+        summary={({ borderWidth }: any) => {
+          return `${borderWidth[0] || 0}px ${borderWidth[1] || 0}px ${
+            borderWidth[2] || 0
+          }px ${borderWidth[3] || 0}px`;
+        }}
+      >
+        <ToolbarItem
+          propKey="borderWidth"
+          index={0}
+          type="slider"
+          label="Top"
+        />
+        <ToolbarItem
+          propKey="borderWidth"
+          index={1}
+          type="slider"
+          label="Right"
+        />
+        <ToolbarItem
+          propKey="borderWidth"
+          index={2}
+          type="slider"
+          label="Bottom"
+        />
+        <ToolbarItem
+          propKey="borderWidth"
+          index={3}
+          type="slider"
+          label="Left"
+        />
+      </ToolbarSection>
       <ToolbarSection title="Decoration">
         <ToolbarItem propKey="buttonStyle" type="radio" label="Style">
           <ToolbarRadio value="full" label="Full" />
           <ToolbarRadio value="outline" label="Outline" />
         </ToolbarItem>
+        <ToolbarItem
+          full={true}
+          propKey="radius"
+          type="slider"
+          label="Radius"
+        />
+        <ToolbarItem
+          full={true}
+          propKey="shadow"
+          type="slider"
+          label="Shadow"
+        />
       </ToolbarSection>
     </React.Fragment>
   );

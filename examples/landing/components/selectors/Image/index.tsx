@@ -3,7 +3,12 @@ import React from 'react';
 import { ImageSettings } from './ImageSettings';
 
 import { Resizer } from '../Resizer';
-
+const defaultProps = {
+  src: '',
+  alt: 'Image',
+  width: '100px',
+  height: '100px',
+};
 export const Image = ({
   width,
   height,
@@ -11,11 +16,17 @@ export const Image = ({
   srcSet,
   ...props
 }: React.ImgHTMLAttributes<any> & {
+  width: string;
+  height: string;
   padding: number[];
   margin: number[];
 }) => {
   return (
-    <Resizer propKey={{ width: 'width', height: 'height' }}>
+    <Resizer
+      propKey={{ width: 'width', height: 'height' }}
+      width={width}
+      height={height}
+    >
       <img
         {...props}
         style={{
@@ -37,10 +48,7 @@ export const Image = ({
 
 Image.craft = {
   displayName: 'Image',
-  props: {
-    src: '',
-    alt: 'Image',
-  },
+  props: defaultProps,
   related: {
     toolbar: ImageSettings,
   },

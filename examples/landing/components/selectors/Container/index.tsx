@@ -22,6 +22,8 @@ export type ContainerProps = {
   shadow: number;
   children: React.ReactNode;
   radius: number;
+  borderWidth: string[];
+  borderColor: Record<'r' | 'g' | 'b' | 'a', number>;
 };
 
 const defaultProps = {
@@ -37,6 +39,8 @@ const defaultProps = {
   radius: 0,
   width: '100%',
   height: 'auto',
+  borderWidth: ['0', '0', '0', '0'],
+  borderColor: { r: 0, g: 0, b: 0, a: 0 },
 };
 
 export const Container = (props: Partial<ContainerProps>) => {
@@ -73,7 +77,10 @@ export const Container = (props: Partial<ContainerProps>) => {
             ? 'none'
             : `0px 3px 100px ${shadow}px rgba(0, 0, 0, 0.13)`,
         borderRadius: `${radius}px`,
+        borderWidth: `${props.borderWidth[0]}px ${props.borderWidth[1]}px ${props.borderWidth[2]}px ${props.borderWidth[3]}px`,
+        borderColor: `rgba(${Object.values(props.borderColor)})`,
         flex: fillSpace === 'yes' ? 1 : 'unset',
+        overflow: 'hidden',
       }}
     >
       {children}

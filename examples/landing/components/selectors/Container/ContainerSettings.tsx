@@ -18,14 +18,17 @@ export const ContainerSettings = () => {
       </ToolbarSection>
       <ToolbarSection
         title="Colors"
-        props={['background', 'color']}
-        summary={({ background, color }: any) => {
+        props={['background', 'color', 'borderColor']}
+        summary={({ background, color, borderColor }: any) => {
           return (
             <div className="flex flex-row-reverse">
               <div
                 style={{
                   background:
                     background && `rgba(${Object.values(background)})`,
+                  borderColor:
+                    borderColor && `rgba(${Object.values(borderColor)})`,
+                  borderWidth: '3px',
                 }}
                 className="shadow-md flex-end w-6 h-6 text-center flex items-center rounded-full bg-black"
               >
@@ -49,6 +52,12 @@ export const ContainerSettings = () => {
           label="Background"
         />
         <ToolbarItem full={true} propKey="color" type="color" label="Text" />
+        <ToolbarItem
+          full={true}
+          propKey="borderColor"
+          type="color"
+          label="Border Color"
+        />
       </ToolbarSection>
       <ToolbarSection
         title="Margin"
@@ -77,6 +86,40 @@ export const ContainerSettings = () => {
         <ToolbarItem propKey="padding" index={1} type="slider" label="Right" />
         <ToolbarItem propKey="padding" index={2} type="slider" label="Bottom" />
         <ToolbarItem propKey="padding" index={3} type="slider" label="Left" />
+      </ToolbarSection>
+      <ToolbarSection
+        title="Border"
+        props={['borderWidth']}
+        summary={({ borderWidth }: any) => {
+          return `${borderWidth[0] || 0}px ${borderWidth[1] || 0}px ${
+            borderWidth[2] || 0
+          }px ${borderWidth[3] || 0}px`;
+        }}
+      >
+        <ToolbarItem
+          propKey="borderWidth"
+          index={0}
+          type="slider"
+          label="Top"
+        />
+        <ToolbarItem
+          propKey="borderWidth"
+          index={1}
+          type="slider"
+          label="Right"
+        />
+        <ToolbarItem
+          propKey="borderWidth"
+          index={2}
+          type="slider"
+          label="Bottom"
+        />
+        <ToolbarItem
+          propKey="borderWidth"
+          index={3}
+          type="slider"
+          label="Left"
+        />
       </ToolbarSection>
       <ToolbarSection title="Decoration" props={['radius', 'shadow']}>
         <ToolbarItem
